@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home', ['title' => 'Home']);
 });
 
@@ -15,5 +12,9 @@ Route::get('/blog', function () {
 });
 
 Route::get('/about', function () {
-    return view('about', ['title' => 'About']);
+    return view('about', ['title' => 'About', 'name' => 'Ahmad Fairuz Ulumuudin']);
+});
+
+Route::get('/contact', function () {
+    return view('contact', ['title' => 'Contact']);
 });
