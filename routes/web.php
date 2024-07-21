@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -28,27 +29,8 @@ Route::get('/blog', function () {
 });
 
 Route::get('/post/{slug}', function ($slug) {
-    $posts =
-        [
-            [
-                'id' => 1,
-                'slug' => "judul-post-pertama",
-                'title' => "Judul Post Pertama",
-                'author' => "Ahmad Fairuz Ulumuudin",
-                'body' => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium unde libero, saepe facere voluptate adipisci culpa necessitatibus eaque? Ratione fugit nihil eligendi ipsa excepturi nulla aliquid alias earum placeat! Numquam?"
-            ],
-            [
-                'id' => 2,
-                'slug' => "judul-post-kedua",
-                'title' => "Judul Post Kedua",
-                'author' => "Aulia Zulfa Annisa",
-                'body' => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium unde libero, saepe facere voluptate adipisci culpa necessitatibus eaque? Ratione fugit nihil eligendi ipsa excepturi nulla aliquid alias earum placeat! Numquam?"
-            ]
-        ];
-
-    $post = Arr::first($posts, function ($post) use ($slug) {
-        return $post['slug'] == $slug;
-    });
+   
+    $post = Post::find($slug);
 
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 });
