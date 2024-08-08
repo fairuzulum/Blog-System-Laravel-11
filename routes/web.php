@@ -9,29 +9,12 @@ Route::get('/', function () {
     return view('home', ['title' => 'Home']);
 });
 
-Route::get('/blog', function () {
-    return view('blog', ['title' => 'Blog', 'posts' => [
-        [
-            'id' => 1,
-            'slug' => "judul-post-pertama",
-            'title' => "Judul Post Pertama",
-            'author' => "Ahmad Fairuz Ulumuudin",
-            'body' => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium unde libero, saepe facere voluptate adipisci culpa necessitatibus eaque? Ratione fugit nihil eligendi ipsa excepturi nulla aliquid alias earum placeat! Numquam?"
-        ],
-        [
-            'id' => 2,
-            'slug' => "judul-post-kedua",
-            'title' => "Judul Post Kedua",
-            'author' => "Aulia Zulfa Annisa",
-            'body' => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium unde libero, saepe facere voluptate adipisci culpa necessitatibus eaque? Ratione fugit nihil eligendi ipsa excepturi nulla aliquid alias earum placeat! Numquam?"
-        ]
-    ]]);
+Route::get('/posts', function () {
+    return view('posts', ['title' => 'Blog', 'posts' => Post::all()]);
 });
 
-Route::get('/post/{slug}', function ($slug) {
+Route::get('/post/{post:slug}', function (Post $post) {
    
-    $post = Post::find($slug);
-
     return view('post', ['title' => 'Single Post', 'post' => $post]);
 });
 
